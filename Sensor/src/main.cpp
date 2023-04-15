@@ -37,8 +37,9 @@ void loop() {
   }
   currTemp = ((data[0] * 256 + data[1]) * 175.72 / 65536.0) - 46.85;
 
-  if (fabs(currHum - oldHum) > 0.05 * oldHum)
+  if (fabs(currHum - oldHum) > 5)
   {
     oldHum = currHum;
+    Serial.println(currHum);
   }
 }
