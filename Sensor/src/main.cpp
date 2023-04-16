@@ -1,19 +1,23 @@
 #include <Arduino.h>
 #include <Wire.h>
 
+using namespace std;
+
 #define Addr 0x40
 
 float oldHum;
 
-void setup() {
+void setup()
+{
   Wire.begin();
   Serial.begin(9600);
   delay(100);
 }
 
-void loop() {
+void loop()
+{
   unsigned int data[2];
-  float currTemp , currHum;
+  float currTemp, currHum;
   Wire.beginTransmission(Addr);
   Wire.write(0xF5);
   Wire.endTransmission();
@@ -40,6 +44,8 @@ void loop() {
   if (fabs(currHum - oldHum) > 5)
   {
     oldHum = currHum;
-    Serial.println(currHum);
+    Serial.print(currHum);
+    Serial.print(",");
+    Serial.print(currTemp);
   }
 }

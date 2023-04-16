@@ -1,12 +1,20 @@
 #include <Arduino.h>
+#include <LiquidCrystal.h>
 
-void setup() {
-  pinMode(13, OUTPUT);
+LiquidCrystal LCD(12, 11, 5, 4, 3, 2);
+
+void setup()
+{
+  Serial.begin(9600);
+  delay(100);
+  LCD.begin(20, 4);
 }
 
-void loop() {
-  digitalWrite(13, HIGH);
-  delay(1000);
-  digitalWrite(13, LOW);
-  delay(1000);
+void loop()
+{
+  if (Serial.available())
+  {
+    LCD.print(Serial.read());
+  }
+  delay(50);
 }
