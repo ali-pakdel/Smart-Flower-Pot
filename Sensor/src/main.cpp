@@ -21,7 +21,7 @@ void loop()
   Wire.beginTransmission(Addr);
   Wire.write(0xF5);
   Wire.endTransmission();
-  delay(500);
+  delay(50);
   Wire.requestFrom(Addr, 2);
   if (Wire.available() == 2)
   {
@@ -32,7 +32,7 @@ void loop()
   Wire.beginTransmission(Addr);
   Wire.write(0xF3);
   Wire.endTransmission();
-  delay(500);
+  delay(50);
   Wire.requestFrom(Addr, 2);
   if (Wire.available() == 2)
   {
@@ -47,5 +47,7 @@ void loop()
     Serial.print(currHum);
     Serial.print(",");
     Serial.print(currTemp);
+    Serial.print(",");
   }
+  delay(50);
 }

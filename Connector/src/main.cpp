@@ -19,8 +19,11 @@ float getFloat()
   float frac = 0;
   bool fracReached = false;
   int fracLength = 1;
-  while (Serial.available() > 0)
+  while (true)
   {
+    if (!Serial.available())
+      continue;
+
     char temp = (char)Serial.read();
     if (temp == '.')
     {
@@ -77,6 +80,7 @@ void loop()
     {
       Serial.print(25);
     }
+    Serial.print(",");
   }
   delay(50);
 }
