@@ -3,6 +3,8 @@
 #include <Stepper.h>
 
 #define MOTOR_SPEED 1200
+#define EN_MOTOR 11
+
 
 Stepper stepper(4, 8, 9, 10, 11);
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
@@ -12,8 +14,9 @@ bool spin;
 void setup()
 {
   spin = false;
-  stepper.setSpeed(1);
   Serial.begin(9600);
+  pinMode(EN_MOTOR, OUTPUT);
+  analogWrite(EN_MOTOR, 255);
   delay(100);
 }
 
@@ -57,8 +60,10 @@ void loop()
   if (Serial.available() > 0)
   {
     float temp = getFloat();
+    int speed = int(temp) * 255 / 100;
+    Serial.println(255 - speed);
     if(temp > 0){
-      stepper.setSpeed(temp / 100 * MOTOR_SPEED);
+      //analogWrite(EN_MOTOR, 255);
       spin = true;
     } else {
       spin = false;

@@ -21,9 +21,9 @@ float getFloat()
   int fracLength = 1;
   while (true)
   {
+    delay(100);
     if (!Serial.available())
       continue;
-
     char temp = (char)Serial.read();
     if (temp == '.')
     {

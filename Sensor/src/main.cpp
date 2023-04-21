@@ -16,6 +16,7 @@ void setup()
 
 void loop()
 {
+  analogWrite()
   unsigned int data[2];
   float currTemp, currHum;
   Wire.beginTransmission(Addr);
